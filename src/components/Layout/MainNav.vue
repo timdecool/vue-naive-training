@@ -2,7 +2,11 @@
 import {NMenu, NSpace, NInput, NSwitch, NIcon} from 'naive-ui'
 import {h, ref} from "vue"
 import { RouterLink } from "vue-router"
-import { MoonRegular, SunRegular } from '@vicons/fa'
+import { Moon, Sun, Home, Dungeon, User } from '@vicons/fa'
+
+function renderIcon(icon) {
+    return () => h(NIcon, null, { default: () => h(icon) });
+}
 
 const menuOptions = [
     {
@@ -15,7 +19,8 @@ const menuOptions = [
         },
         { default: () => "Accueil"}
         ),
-        key: "go-back-home"
+        key: "go-back-home",
+        icon: renderIcon(Home)
     },
     {
     label: () => h(
@@ -27,7 +32,8 @@ const menuOptions = [
         },
         { default: () => "Personnages"}
         ),
-        key: "characters"
+        key: "characters",
+        icon: renderIcon(User)
     },
     {
     label: () => h(
@@ -39,7 +45,8 @@ const menuOptions = [
         },
         { default: () => "Donjons"}
         ),
-        key: "dungeons"
+        key: "dungeons",
+        icon: renderIcon(Dungeon)
     }
 
 ]
@@ -51,20 +58,22 @@ const activeKey= ref(null)
 <template>
     <nav>
         <n-space justify="space-between" align="center">
-            <n-space horizontal align="center">
-                <img width="40vh" src="../../../public/favicon.png" alt="">
-                <h1>QuickLoot</h1>
-            </n-space>
             <n-space align="center">
-                <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
-                <n-input type="text" placeholder="Rechercher un élément" clearable />
+                <n-space horizontal align="center">
+                    <img width="40vh" src="../../../public/favicon.png" alt="">
+                    <h1>QuickLoot</h1>
+                </n-space>
+                <n-space align="center">
+                    <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" class="navbar"/>
+                    <n-input type="text" placeholder="Rechercher un élément" clearable />
+                </n-space>
             </n-space>
-            <n-switch size="large" :default-value="true">
+            <n-switch size="medium" :default-value="true">
                 <template #checked-icon>
-                    <n-icon :component="MoonRegular" />
+                    <n-icon :component="Moon" />
                 </template>
                 <template #unchecked-icon>
-                    <n-icon :component="SunRegular" />
+                    <n-icon :component="Sun" />
                 </template>
 
             </n-switch>
@@ -76,6 +85,10 @@ const activeKey= ref(null)
 <style scoped>
 nav {
     padding: 15px 30px;
+}
+
+.navbar {
+    margin-left: 30px;
 }
 
 

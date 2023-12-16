@@ -1,6 +1,6 @@
 <script setup>
 // NAIVE UI
-import { NConfigProvider, darkTheme, frFR } from 'naive-ui'
+import { NConfigProvider, darkTheme, lightTheme, frFR } from 'naive-ui'
 
 // COMPONENTS
 import MainLayout from '@/components/Layout/MainLayout.vue'
@@ -14,11 +14,11 @@ import MainNav from '@/components/Layout/MainNav.vue'
         <main-nav />
       </template>
       <template #content>
-        <router-view/>
+          <router-view/>
       </template>
 
       <template #footer>
-        yo
+        
       </template>
     </main-layout>
   </n-config-provider>
