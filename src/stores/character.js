@@ -20,7 +20,7 @@ export const useCharacterStore = defineStore('character', () => {
                     wisdom: 12,
                     charisma: 14
                 },
-                level: 1,
+                level: 5,
                 xp: 0,
                 gold: 50,
                 inventory: [],
@@ -93,11 +93,31 @@ export const useCharacterStore = defineStore('character', () => {
             let classes = characters.value.map(({path}) => path)
             return [... new Set(classes)]
         })
+        const classesToDisplay = ref(getAvailableClasses.value)
+
+        function updateClassesToDisplay(item) {
+            classesToDisplay.value = item
+        }
 
         const getLevelRange = computed(() => {
             let levels = characters.value.map(({level}) => level)
-            return { max: Math.max(...levels), min: Math.min(...levels) }
+            return [Math.min(...levels),Math.max(...levels)]
+        })
+        const levelsToDisplay = ref(getLevelRange.value)
+
+        function updateLevelsToDisplay(item) {
+            levelsToDisplay.value = item
+        }
+
+        const getCharacters = computed(() => {
+            let filteredCharacters = characters.value
+            filteredCharacters = filteredCharacters.filter((item) => item.level >= levelsToDisplay.value[0] && item.level <= levelsToDisplay.value[1] && classesToDisplay.value.includes(item.path))
+            return filteredCharacters
         })
 
-    return { characters, getAvailableClasses, getLevelRange }
+        function getOneCharacter(id) {
+            return characters.value.filter((item) => item.id === parseInt(id))[0]
+        }
+
+    return { characters, getAvailableClasses, getLevelRange, updateClassesToDisplay, updateLevelsToDisplay, getCharacters, classesToDisplay, levelsToDisplay, getOneCharacter }
 })

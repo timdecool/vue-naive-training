@@ -5,19 +5,17 @@
 
 <template>
   <main>
-    <n-layout has-sider>
-      <n-layout-sider 
-        content-style="padding: 24px;" 
-        bordered
-        collapse-mode="transform"
-        :collapsed-width="20"
-        :width="240"
-        show-trigger="arrow-circle"
-      >
-        Handian Bridge
-      </n-layout-sider>
+    <n-layout>
       <n-layout-content content-style="padding: 24px;">
-        Yo
+        <n-layout>
+          <p>
+            Explorez des mondes uniques, créez des héros imprévisibles et forgez des donjons
+            épiques. Personnages : Gérez et créez des héros avec des détails uniques. Donjons :
+            Devenez le maître du jeu, générez des aventures captivantes. Plongez dans
+            l'imprévisible, le passionnant et créez des souvenirs inoubliables. Prêt à vivre
+            l'aventure ?
+          </p>
+        </n-layout>
       </n-layout-content>
     </n-layout>
   </main>

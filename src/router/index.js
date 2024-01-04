@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CharactersView from '../views/CharactersView.vue'
 import DungeonsView from '../views/DungeonsView.vue'
+import CharacterDetails from '../views/CharacterDetails.vue'
+import CharacterCreation from '../views/CharacterCreation.vue'
 
 
 const router = createRouter({
@@ -16,6 +18,16 @@ const router = createRouter({
       path: '/characters',
       name: 'characters',
       component: CharactersView
+    },
+    {
+      path:'/characters/:id',
+      name: 'characterDetails',
+      component: CharacterDetails
+    },
+    {
+      path: '/characters/new',
+      name: 'characterCreation',
+      component: CharacterCreation
     },
     {
       path: '/dungeons',
